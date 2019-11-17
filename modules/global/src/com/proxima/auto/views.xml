@@ -35,9 +35,9 @@
         <property name="countryCode" view="_minimal"/>
     </view>
     <view entity="auto_UserExt" name="userExt-view" extends="_local">
-        <property name="countryCode" view="_minimal"/>
-        <property name="group" view="group.edit"/>
-        <property name="userRoles"/>
-        <property name="substitutions"/>
+        <property name="countryCode" view="_base"/>
+        <property name="group" view="_local"/>
+        <property name="userRoles" view="user.edit"/>
+        <property name="substitutions" view="user.edit"/>
     </view>
 </views>

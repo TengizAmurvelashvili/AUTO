@@ -15,7 +15,7 @@ import javax.persistence.ManyToOne;
 public class UserExt extends User {
     private static final long serialVersionUID = -3158110029922839446L;
 
-    @Lookup(type = LookupType.DROPDOWN, actions = {"lookup"})
+    @Lookup(type = LookupType.SCREEN, actions = {"lookup", "open", "clear"})
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "COUNTRY_CODE_ID")
     protected Country countryCode;
