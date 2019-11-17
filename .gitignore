@@ -9,3 +9,4 @@ modules/*/build/*
 .idea/*
 out
 test-run
+/modules/global/src/com/proxima/auto/entity/

@@ -8,7 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
-@NamePattern("%s|country")
+@NamePattern("%s %s|country,code")
 @Table(name = "AUTO_COUNTRY")
 @Entity(name = "auto_Country")
 public class Country extends StandardEntity {

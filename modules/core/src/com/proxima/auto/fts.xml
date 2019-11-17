@@ -4,9 +4,6 @@
         <entity class="com.proxima.auto.entity.Country">
             <include re=".*"/>
         </entity>
-        <entity class="com.proxima.auto.entity.UserExt">
-            <include re=".*"/>
-        </entity>
         <entity class="com.proxima.auto.entity.Manufacturer">
             <include re=".*"/>
         </entity>
@@ -26,6 +23,9 @@
             <include re=".*"/>
         </entity>
         <entity class="com.proxima.auto.entity.Order">
+            <include re=".*"/>
+        </entity>
+        <entity class="com.proxima.auto.entity.UserExt">
             <include re=".*"/>
         </entity>
     </entities>

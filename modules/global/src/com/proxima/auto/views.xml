@@ -1,14 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <views xmlns="http://schemas.haulmont.com/cuba/view.xsd">
 
-    <view entity="auto_UserExt" name="userExt-view" extends="_local">
-        <property name="countryCode" view="_minimal">
-            <property name="code"/>
-        </property>
-        <property name="group" view="_minimal"/>
-        <property name="userRoles" view="_minimal"/>
-        <property name="substitutions" view="_minimal"/>
-    </view>
     <view entity="auto_Model" name="model-view" extends="_local">
         <property name="manufacturer" view="_minimal"/>
         <property name="option" view="_minimal">
@@ -21,7 +13,9 @@
         <property name="model" view="_minimal"/>
     </view>
     <view entity="auto_Order" name="order-view" extends="_local">
-        <property name="car" view="_minimal"/>
+        <property name="car" view="_minimal">
+            <property name="price"/>
+        </property>
         <property name="customer" view="_minimal">
             <property name="code"/>
         </property>
@@ -39,5 +33,11 @@
     <view entity="auto_Customer" name="customer-view" extends="_local"/>
     <view entity="auto_Manufacturer" name="manufacturer-view" extends="_local">
         <property name="countryCode" view="_minimal"/>
+    </view>
+    <view entity="auto_UserExt" name="userExt-view" extends="_local">
+        <property name="countryCode" view="_minimal"/>
+        <property name="group" view="group.edit"/>
+        <property name="userRoles"/>
+        <property name="substitutions"/>
     </view>
 </views>
