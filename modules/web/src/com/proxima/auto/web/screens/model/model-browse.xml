@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/screen/window.xsd"
+        caption="msg://browseCaption"
+        focusComponent="modelsTable"
+        messagesPack="com.proxima.auto.web.screens.model">
+    <data readOnly="true">
+        <collection id="modelsDc"
+                    class="com.proxima.auto.entity.Model"
+                    view="model-view">
+            <loader id="modelsDl">
+                <query>
+                    <![CDATA[select e from auto_Model e where e.manufacturer.code like :manufacturer]]>
+                </query>
+            </loader>
+        </collection>
+    </data>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="modelsTable"
+            spacing="true">
+        <filter id="filter"
+                applyTo="modelsTable"
+                dataLoader="modelsDl">
+            <properties include=".*"/>
+        </filter>
+        <groupTable id="modelsTable"
+                    width="100%"
+                    dataContainer="modelsDc">
+            <actions>
+                <action id="create" type="create"/>
+                <action id="edit" type="edit"/>
+                <action id="remove" type="remove"/>
+                <action id="refresh" type="refresh"/>
+                <action id="excel" type="excel"/>
+            </actions>
+            <columns>
+                <column id="name"/>
+                <column id="manufacturer"/>
+            </columns>
+            <rowsCount/>
+            <buttonsPanel id="buttonsPanel"
+                          alwaysVisible="true">
+                <button id="createBtn" action="modelsTable.create"/>
+                <button id="editBtn" action="modelsTable.edit"/>
+                <button id="removeBtn" action="modelsTable.remove"/>
+                <button id="refreshBtn" action="modelsTable.refresh"/>
+                <button id="excelBtn" action="modelsTable.excel"/>
+            </buttonsPanel>
+        </groupTable>
+        <hbox id="lookupActions" spacing="true" visible="false">
+            <button action="lookupSelectAction"/>
+            <button action="lookupCancelAction"/>
+        </hbox>
+    </layout>
+</window>

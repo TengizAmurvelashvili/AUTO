@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<persistence xmlns="http://java.sun.com/xml/ns/persistence" version="2.0">
+    <persistence-unit name="AUTO" transaction-type="RESOURCE_LOCAL">
+
+        <class>com.proxima.auto.entity.Country</class>
+        <class>com.proxima.auto.entity.UserExt</class>
+        <class>com.proxima.auto.entity.Manufacturer</class>
+        <class>com.proxima.auto.entity.Color</class>
+        <class>com.proxima.auto.entity.Model</class>
+        <class>com.proxima.auto.entity.Option</class>
+        <class>com.proxima.auto.entity.Car</class>
+        <class>com.proxima.auto.entity.Customer</class>
+        <class>com.proxima.auto.entity.Order</class>
+    </persistence-unit>
+</persistence>

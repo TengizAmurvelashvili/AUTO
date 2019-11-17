@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/screen/window.xsd"
+        caption="msg://editorCaption"
+        focusComponent="form"
+        messagesPack="com.proxima.auto.web.screens.manufacturer">
+    <data>
+        <instance id="manufacturerDc"
+                  class="com.proxima.auto.entity.Manufacturer"
+                  view="manufacturer-view">
+            <loader/>
+        </instance>
+    </data>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="editActions" spacing="true">
+        <form id="form" dataContainer="manufacturerDc">
+            <column width="250px">
+                <textField id="codeField" property="code"/>
+                <textField id="nameField" property="name"/>
+                <pickerField id="countryCodeField" property="countryCode">
+                    <actions>
+                        <action id="lookup" type="picker_lookup"/>
+                        <action id="clear" type="picker_clear"/>
+                    </actions>
+                </pickerField>
+            </column>
+        </form>
+        <hbox id="editActions" spacing="true">
+            <button action="windowCommitAndClose"/>
+            <button action="windowClose"/>
+        </hbox>
+    </layout>
+</window>

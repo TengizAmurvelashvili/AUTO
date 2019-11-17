@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/screen/window.xsd"
+        caption="msg://browseCaption"
+        focusComponent="optionsTable"
+        messagesPack="com.proxima.auto.web.screens.option">
+    <data readOnly="true">
+        <collection id="optionsDc"
+                    class="com.proxima.auto.entity.Option"
+                    view="option-view">
+            <loader id="optionsDl">
+                <query>
+                    <![CDATA[select e from auto_Option e where e.model.name like :model]]>
+                </query>
+            </loader>
+        </collection>
+    </data>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="optionsTable"
+            spacing="true">
+        <filter id="filter"
+                applyTo="optionsTable"
+                dataLoader="optionsDl">
+            <properties include=".*"/>
+        </filter>
+        <groupTable id="optionsTable"
+                    width="100%"
+                    dataContainer="optionsDc">
+            <actions>
+                <action id="create" type="create"/>
+                <action id="edit" type="edit"/>
+                <action id="remove" type="remove"/>
+                <action id="refresh" type="refresh"/>
+                <action id="excel" type="excel"/>
+            </actions>
+            <columns>
+                <column id="name"/>
+                <column id="price"/>
+                <column id="carType"/>
+                <column id="note"/>
+                <column id="model"/>
+            </columns>
+            <rowsCount/>
+            <buttonsPanel id="buttonsPanel"
+                          alwaysVisible="true">
+                <button id="createBtn" action="optionsTable.create"/>
+                <button id="editBtn" action="optionsTable.edit"/>
+                <button id="removeBtn" action="optionsTable.remove"/>
+                <button id="refreshBtn" action="optionsTable.refresh"/>
+                <button id="excelBtn" action="optionsTable.excel"/>
+            </buttonsPanel>
+        </groupTable>
+        <hbox id="lookupActions" spacing="true" visible="false">
+            <button action="lookupSelectAction"/>
+            <button action="lookupCancelAction"/>
+        </hbox>
+    </layout>
+</window>

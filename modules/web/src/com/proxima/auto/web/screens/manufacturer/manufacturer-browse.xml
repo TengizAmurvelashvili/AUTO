@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/screen/window.xsd"
+        caption="msg://browseCaption"
+        focusComponent="manufacturersTable"
+        messagesPack="com.proxima.auto.web.screens.manufacturer">
+    <data readOnly="true">
+        <collection id="manufacturersDc"
+                    class="com.proxima.auto.entity.Manufacturer"
+                    view="manufacturer-view">
+            <loader id="manufacturersDl">
+                <query>
+                    <![CDATA[select e from auto_Manufacturer e]]>
+                </query>
+            </loader>
+        </collection>
+    </data>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="manufacturersTable"
+            spacing="true">
+        <filter id="filter"
+                applyTo="manufacturersTable"
+                dataLoader="manufacturersDl">
+            <properties include=".*"/>
+        </filter>
+        <groupTable id="manufacturersTable"
+                    width="100%"
+                    dataContainer="manufacturersDc">
+            <actions>
+                <action id="create" type="create"/>
+                <action id="edit" type="edit"/>
+                <action id="remove" type="remove"/>
+                <action id="refresh" type="refresh"/>
+                <action id="excel" type="excel"/>
+            </actions>
+            <columns>
+                <column id="code"/>
+                <column id="modelQty" generator="generateModelQtyCell" caption="Model Quantity"/>
+                <column id="name"/>
+                <column id="countryCode"/>
+            </columns>
+            <rowsCount/>
+            <buttonsPanel id="buttonsPanel"
+                          alwaysVisible="true">
+                <button id="createBtn" action="manufacturersTable.create"/>
+                <button id="editBtn" action="manufacturersTable.edit"/>
+                <button id="removeBtn" action="manufacturersTable.remove"/>
+                <button id="refreshBtn" action="manufacturersTable.refresh"/>
+                <button id="excelBtn" action="manufacturersTable.excel"/>
+            </buttonsPanel>
+        </groupTable>
+        <hbox id="lookupActions" spacing="true" visible="false">
+            <button action="lookupSelectAction"/>
+            <button action="lookupCancelAction"/>
+        </hbox>
+    </layout>
+</window>

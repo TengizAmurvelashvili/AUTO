@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/screen/window.xsd"
+        caption="msg://browseCaption"
+        focusComponent="carsTable"
+        messagesPack="com.proxima.auto.web.screens.car">
+    <data readOnly="true">
+        <collection id="carsDc"
+                    class="com.proxima.auto.entity.Car"
+                    view="car-view">
+            <loader id="carsDl">
+                <query>
+                    <![CDATA[select e from auto_Car e]]>
+                </query>
+            </loader>
+        </collection>
+    </data>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="carsTable"
+            spacing="true">
+        <filter id="filter"
+                applyTo="carsTable"
+                dataLoader="carsDl">
+            <properties include=".*"/>
+        </filter>
+        <groupTable id="carsTable"
+                    width="100%"
+                    dataContainer="carsDc">
+            <actions>
+                <action id="create" type="create"/>
+                <action id="edit" type="edit"/>
+                <action id="remove" type="remove"/>
+                <action id="refresh" type="refresh"/>
+                <action id="excel" type="excel"/>
+            </actions>
+            <columns>
+                <column id="manufacturer"/>
+                <column id="model"/>
+                <column id="option"/>
+                <column id="name"/>
+                <column id="issueYear"/>
+                <column id="color"/>
+                <column id="price"/>
+            </columns>
+            <rowsCount/>
+            <buttonsPanel id="buttonsPanel"
+                          alwaysVisible="true">
+                <button id="createBtn" action="carsTable.create"/>
+                <button id="editBtn" action="carsTable.edit"/>
+                <button id="removeBtn" action="carsTable.remove"/>
+                <button id="refreshBtn" action="carsTable.refresh"/>
+                <button id="excelBtn" action="carsTable.excel"/>
+            </buttonsPanel>
+        </groupTable>
+        <hbox id="lookupActions" spacing="true" visible="false">
+            <button action="lookupSelectAction"/>
+            <button action="lookupCancelAction"/>
+        </hbox>
+    </layout>
+</window>

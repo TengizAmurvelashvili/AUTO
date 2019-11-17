@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<fts-config xmlns="http://schemas.haulmont.com/cuba/fts.xsd">
+    <entities>
+        <entity class="com.proxima.auto.entity.Country">
+            <include re=".*"/>
+        </entity>
+        <entity class="com.proxima.auto.entity.UserExt">
+            <include re=".*"/>
+        </entity>
+        <entity class="com.proxima.auto.entity.Manufacturer">
+            <include re=".*"/>
+        </entity>
+        <entity class="com.proxima.auto.entity.Color">
+            <include re=".*"/>
+        </entity>
+        <entity class="com.proxima.auto.entity.Model">
+            <include re=".*"/>
+        </entity>
+        <entity class="com.proxima.auto.entity.Option">
+            <include re=".*"/>
+        </entity>
+        <entity class="com.proxima.auto.entity.Car">
+            <include re=".*"/>
+        </entity>
+        <entity class="com.proxima.auto.entity.Customer">
+            <include re=".*"/>
+        </entity>
+        <entity class="com.proxima.auto.entity.Order">
+            <include re=".*"/>
+        </entity>
+    </entities>
+</fts-config>

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/screen/window.xsd"
+        caption="msg://editorCaption"
+        focusComponent="form"
+        messagesPack="com.proxima.auto.web.screens.model">
+    <data>
+        <instance id="modelDc"
+                  class="com.proxima.auto.entity.Model"
+                  view="model-view">
+            <loader/>
+            <collection id="optionDc" property="option"/>
+        </instance>
+    </data>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="editActions" spacing="true">
+        <form id="form" dataContainer="modelDc">
+            <column width="250px">
+                <textField id="nameField" property="name"/>
+                <pickerField id="manufacturerField" property="manufacturer">
+                    <actions>
+                        <action id="lookup" type="picker_lookup"/>
+                        <action id="clear" type="picker_clear"/>
+                    </actions>
+                </pickerField>
+            </column>
+        </form>
+        <groupBox id="optionBox" caption="msg://com.proxima.auto.entity/Model.option">
+            <table id="optionTable" dataContainer="optionDc" width="100%" height="200px">
+                <actions>
+                    <action id="create" type="create"/>
+                    <action id="edit" type="edit"/>
+                    <action id="remove" type="remove"/>
+                </actions>
+                <columns>
+                    <column id="name"/>
+                    <column id="price"/>
+                    <column id="carType"/>
+                    <column id="note"/>
+                </columns>
+                <buttonsPanel>
+                    <button action="optionTable.create"/>
+                    <button action="optionTable.edit"/>
+                    <button action="optionTable.remove"/>
+                </buttonsPanel>
+            </table>
+        </groupBox>
+        <hbox id="editActions" spacing="true">
+            <button action="windowCommitAndClose"/>
+            <button action="windowClose"/>
+        </hbox>
+    </layout>
+</window>

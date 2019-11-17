@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<menu-config xmlns="http://schemas.haulmont.com/cuba/menu.xsd">
+    <menu id="application-auto" insertBefore="administration">
+        <item screen="auto_Country.browse"/>
+        <item screen="auto_Manufacturer.browse"/>
+        <item screen="auto_Color.browse"/>
+        <item screen="auto_Model.browse"/>
+        <item screen="auto_Option.browse"/>
+        <item screen="auto_Car.browse"/>
+        <item screen="auto_Customer.browse"/>
+        <item screen="auto_Order.browse"/>
+    </menu>
+</menu-config>

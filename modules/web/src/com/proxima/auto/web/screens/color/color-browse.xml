@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/screen/window.xsd"
+        caption="msg://browseCaption"
+        focusComponent="colorsTable"
+        messagesPack="com.proxima.auto.web.screens.color">
+    <data readOnly="true">
+        <collection id="colorsDc"
+                    class="com.proxima.auto.entity.Color"
+                    view="_local">
+            <loader id="colorsDl">
+                <query>
+                    <![CDATA[select e from auto_Color e]]>
+                </query>
+            </loader>
+        </collection>
+    </data>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="colorsTable"
+            spacing="true">
+        <filter id="filter"
+                applyTo="colorsTable"
+                dataLoader="colorsDl">
+            <properties include=".*"/>
+        </filter>
+        <groupTable id="colorsTable"
+                    width="100%"
+                    dataContainer="colorsDc">
+            <actions>
+                <action id="create" type="create"/>
+                <action id="edit" type="edit"/>
+                <action id="remove" type="remove"/>
+                <action id="refresh" type="refresh"/>
+                <action id="excel" type="excel"/>
+            </actions>
+            <columns>
+                <column id="code"/>
+                <column id="name"/>
+            </columns>
+            <rowsCount/>
+            <buttonsPanel id="buttonsPanel"
+                          alwaysVisible="true">
+                <button id="createBtn" action="colorsTable.create"/>
+                <button id="editBtn" action="colorsTable.edit"/>
+                <button id="removeBtn" action="colorsTable.remove"/>
+                <button id="refreshBtn" action="colorsTable.refresh"/>
+                <button id="excelBtn" action="colorsTable.excel"/>
+            </buttonsPanel>
+        </groupTable>
+        <hbox id="lookupActions" spacing="true" visible="false">
+            <button action="lookupSelectAction"/>
+            <button action="lookupCancelAction"/>
+        </hbox>
+    </layout>
+</window>
