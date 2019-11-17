@@ -7,8 +7,8 @@ import com.haulmont.cuba.core.config.SourceType;
 import com.haulmont.cuba.core.config.defaults.Default;
 
 @Source(type = SourceType.DATABASE)
-public abstract class CountryConfig implements Config {
-    @Property("homework.country")
-    @Default("Geo")
+public interface CountryConfig extends Config {
+    @Property("Auto.country")
+    @Default("GEO")
     public abstract String getCountryDefault();
 }

@@ -4,9 +4,11 @@ import com.haulmont.cuba.core.EntityManager;
 import com.haulmont.cuba.core.Persistence;
 import com.haulmont.cuba.core.Query;
 import com.haulmont.cuba.core.Transaction;
-import com.proxima.auto.entity.Car;
-import com.proxima.auto.entity.Customer;
-import com.proxima.auto.entity.Manufacturer;
+import com.haulmont.cuba.core.global.UserSessionSource;
+import com.haulmont.cuba.security.entity.User;
+import com.proxima.auto.config.CountryConfig;
+import com.proxima.auto.entity.*;
+import org.apache.poi.ss.formula.functions.Count;
 import org.springframework.stereotype.Service;
 
 import javax.inject.Inject;
@@ -16,6 +18,10 @@ import java.math.BigDecimal;
 public class ProximaServiceBean implements ProximaService {
     @Inject
     private Persistence persistence;
+    @Inject
+    private UserSessionSource userSessionSource;
+    @Inject
+    private CountryConfig countryConfig;
 
     @Override
     public Long getModelQty(Manufacturer manufacturer) {
@@ -44,15 +50,29 @@ public class ProximaServiceBean implements ProximaService {
     }
 
     @Override
-    public BigDecimal getCarPrice(Car car) {
-        BigDecimal ret=BigDecimal.ZERO;
+    public Country getCountryCode() {
+        User user = userSessionSource.getUserSession().getUser();
+        Country ret;
         try (Transaction tx = persistence.createTransaction()) {
             EntityManager em = persistence.getEntityManager();
-            Query query = em.createQuery("select o.price from auto_Car o where o.Id=:carId");
-            query.setParameter("carId", car.getId());
-            ret = (BigDecimal) query.getFirstResult();
+            Query query = em.createQuery("select o.countryCode from auto_UserExt o where o.id=:userId");
+            query.setParameter("userId", user.getId());
+            ret = (Country) query.getFirstResult();
             tx.commit();
         }
-        return ret;
+        if (ret == null) {
+            try (Transaction tx = persistence.createTransaction()) {
+                EntityManager em = persistence.getEntityManager();
+                Query query = em.createQuery("select c from auto_Country c where c.code=:code");
+                query.setParameter("code", countryConfig.getCountryDefault());
+                ret = (Country) query.getFirstResult();
+                tx.commit();
+            }
+            return ret;
+        }
+        else {
+            return ret;
+        }
     }
+
 }
